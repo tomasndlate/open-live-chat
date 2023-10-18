@@ -1,0 +1,10 @@
+<p>chat works!</p>
+<ul>
+  <li *ngFor="let msg of messages">
+    {{msg.content}}
+  </li>
+</ul>
+
+<input [(ngModel)]="message" placeholder="Enter your username" />
+<p>Your username is: {{ message }}</p>
+<button (click)="sendMessage()">send</button>
