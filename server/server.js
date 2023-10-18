@@ -6,7 +6,7 @@ const cors = require('cors');
 require('dotenv').config()
 // Import files
 const connectDB = require('./utils/db/connectionDB')
-const socketManager = require('./sockets/socketManager');
+const socket = require('./sockets/socket');
 const messageRoutes = require('./routes/messageRoutes.js');
 // Define variables
 const port = 3000;
@@ -17,17 +17,13 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 
+// Database connection
 connectDB.connectDB()
 
-socketManager.initSocketOnServer(server)
+// Socket Methods
+socket.initSocketOnServer(server)
 // HTTP Methods Routes
 app.use('/messages', messageRoutes);
-
-
-// // Define a route
-// app.get('/', (req, res) => {
-//   res.send('Hello, Express!');
-// });
 
 // Start the server
 server.listen(port, () => {
