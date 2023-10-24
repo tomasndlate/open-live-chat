@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatComponent } from './chat.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ChatRoutes } from './chat.routes';
 
 
 
@@ -9,7 +11,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [ ChatComponent ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(ChatRoutes)
   ],
   exports: [ ChatComponent ]
 })

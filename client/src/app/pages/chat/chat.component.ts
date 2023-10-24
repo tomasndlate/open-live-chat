@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Message } from 'src/app/models/message';
 import { MessagesService } from 'src/app/services/messages/messages.service';
 import { SocketsService } from 'src/app/services/sockets/sockets.service';
@@ -26,6 +26,7 @@ export class ChatComponent {
       console.log(this.messages[0])
     })
     this.getNewMessages()
+    // this.scrollToBottom();
   }
 
   sendMessage(){
@@ -41,4 +42,5 @@ export class ChatComponent {
       // data.content
     })
   }
+
 }
