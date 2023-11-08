@@ -7,7 +7,9 @@ require('dotenv').config()
 // Import files
 const connectDB = require('./utils/db/connectionDB')
 const socket = require('./sockets/socket');
-const messageRoutes = require('./routes/messageRoutes.js');
+// Import Routes
+const authenticationRoute = require('./routes/authenticationRoute');
+const messageRoute = require('./routes/messageRoute');
 // Define variables
 const port = 3000;
 const app = express();
@@ -23,9 +25,10 @@ connectDB.connectDB()
 // Socket Methods
 socket.initSocketOnServer(server)
 // HTTP Methods Routes
-app.use('/messages', messageRoutes);
+app.use('/authentication', authenticationRoute)
+app.use('/messages', messageRoute);
 
 // Start the server
 server.listen(port, () => {
-  console.log(`Server is running on http://192.168.1.8:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

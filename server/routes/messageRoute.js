@@ -2,6 +2,8 @@
 const express = require('express');
 const Message = require('../models/Message');
 
+const authenticate = require('../middleware/authenticate');
+
 const router = express.Router();
 
 // Route to send a new message
@@ -26,7 +28,7 @@ router.post('/send-message', async (req, res) => {
 });
 
 // Route to get all messages
-router.get('/get-all-messages', async (req, res) => {
+router.get('/get-all-messages', authenticate, async (req, res) => {
   try {
     // Retrieve all messages
     const allMessages = await Message.find();
