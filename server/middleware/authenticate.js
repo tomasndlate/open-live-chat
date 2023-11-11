@@ -1,8 +1,15 @@
 // const jwt = require('jsonwebtoken');
-const validateAuthToken = require('../utils/validateAuthToken');
+const {validateAuthToken} = require('../utils/validateAuthToken');
 
 const authenticate = (req, res, next) => {
-    const token = req.header('Authorization');
+    const authorizationHeader = req.header('Authorization');
+
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Unauthorized - No Bearer token provided' });
+    }
+
+    // Extract the token without the "Bearer " prefix
+    const token = authorizationHeader.substring(7);
 
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized - No token provided' });

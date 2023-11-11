@@ -6,26 +6,28 @@ const authenticate = require('../middleware/authenticate');
 
 const router = express.Router();
 
-// Route to send a new message
-router.post('/send-message', async (req, res) => {
-  try {
+{
+// // Route to send a new message
+// router.post('/send-message', async (req, res) => {
+//   try {
 
-    const { sender, content } = req.body;
+//     const { sender, content } = req.body;
     
-    const newMessage = new Message({
-      sender,
-      content,
-    });
+//     const newMessage = new Message({
+//       sender,
+//       content,
+//     });
 
-    // Save the message to the database
-    await newMessage.save();
+//     // Save the message to the database
+//     await newMessage.save();
 
-    res.status(201).json({ message: 'Message sent successfully', message: newMessage });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+//     res.status(201).json({ message: 'Message sent successfully', message: newMessage });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
+}
 
 // Route to get all messages
 router.get('/get-all-messages', authenticate, async (req, res) => {
@@ -41,7 +43,7 @@ router.get('/get-all-messages', authenticate, async (req, res) => {
 });
 
 // Route to get a message by ID
-router.get('/get-message/:messageId', async (req, res) => {
+router.get('/get-message/:messageId', authenticate, async (req, res) => {
   try {
     const messageId = req.params.messageId;
 

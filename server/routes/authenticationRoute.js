@@ -20,9 +20,10 @@ router.post('/signup', async (req, res) => {
             password: encryptedPassword });
 
         console.log("here")
-        await user.save();
+        const savedUser = await user.save();
+        const authToken = generateAuthToken(savedUser._id)
         console.log("done")
-        res.status(201).send('User created successfully');
+        res.status(201).json({token: authToken});
     } catch (error) {
         console.log(error)
         res.status(500).send('Error creating user');
@@ -33,8 +34,7 @@ router.post('/signin', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        let encryptedPassword = await encryptPassword(password);
-        let isValidPassword = await comparePassword(encryptedPassword, user.password)
+        let isValidPassword = await comparePassword(password, user.password)
         // User doesn't exist or password not valid
         if (!user || !(isValidPassword)) {
             res.status(401).send('Invalid username or password');
