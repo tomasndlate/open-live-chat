@@ -1,0 +1,131 @@
+nav{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(19, 16, 16, 0.8);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.nav-width-constraint{
+    position: relative;
+    height: fit-content;
+    width: calc(100% - 30px);
+    max-width: 1350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-links{
+    position: relative;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-logo{
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.nav-link{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+// If logged out
+.right-links-signed-out{
+    position: relative;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.nav-sign-btn{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 3px;
+    transition: all 0.1s ease-in-out;
+}
+
+.nav-sign-up{
+    border: 1px solid rgba(129, 125, 125, 0.5);
+    box-sizing: border-box;
+}
+
+.nav-sign-up:hover{
+    padding: 8px 12px;
+    border: 3px solid white;
+}
+
+.nav-sign-in{
+    background-color: white;
+    color: black;
+}
+
+.nav-sign-in:hover{
+    box-shadow: 0 10px 10px rgba(187, 188, 190, 0.05);
+    };
+
+.nav-sign-btn:nth-child(2){
+    margin-left: 10px;
+}
+
+// If logged in
+.right-links-signed-in {
+    position: relative;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-username{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.nav-user-btn{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-color: rgb(141, 79, 90);
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+// Router navigation details
+.active-link{
+    display: inline-block;
+    position: relative;
+}
+
+.active-link::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(129, 125, 125, 0.5);
+}
+
+.active-sign-btn{
+    display: none;
+    margin: 0;
+}

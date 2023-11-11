@@ -1,0 +1,18 @@
+<nav>
+    <div class="nav-width-constraint">
+        <div class="left-links">
+            <a class="nav-logo" routerLink="/home">Open-Live-Chat</a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+            <a class="nav-link" routerLink="/chat" routerLinkActive="active-link">Chat</a>
+            <a class="nav-link" routerLink="/project" routerLinkActive="active-link">Project</a>
+        </div>
+        <div *ngIf="!isSignedIn" class="right-links-signed-out">
+            <a class="nav-sign-btn nav-sign-up" routerLink="/signup" routerLinkActive="active-sign-btn">Become a member</a>
+            <a class="nav-sign-btn nav-sign-in" routerLink="/signin" routerLinkActive="active-sign-btn">Sign in</a>
+        </div>
+        <div *ngIf="isSignedIn" class="right-links-signed-in">
+            <h5 class="nav-username">tomasndlate</h5>
+            <div class="nav-user-btn"></div>
+        </div>
+    </div>
+</nav>

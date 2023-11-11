@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { setToken, getToken, removeToken } from '../../utils/tokenUtils';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,13 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:3000/authentication'
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private isUserSignedInSubject = new BehaviorSubject<boolean>(false);
+  isUserSignedIn: Observable<boolean> = this.isUserSignedInSubject.asObservable();
+
+  constructor(private http: HttpClient, private router: Router) {
+    // First time called set the user status at the moment
+    this.setUserSignStatus(this.isSignedIn())
+  }
 
   signIn(username: string, password: string): Observable<boolean> {
     const credentials = {username, password}
@@ -25,6 +31,7 @@ export class AuthService {
         const token = response.token;
         if (token) {
           this.setToken(response.token);
+          this.setUserSignStatus(true);
           return true;
         } else {
           return false;
@@ -49,6 +56,7 @@ export class AuthService {
         const token = response.token;
         if (token) {
           this.setToken(response.token);
+          this.setUserSignStatus(true);
           return true;
         } else {
           return false;
@@ -63,6 +71,10 @@ export class AuthService {
   signOut() {
     removeToken();
     this.router.navigate(['/signin'])
+  }
+
+  private setUserSignStatus(newStatus: boolean): void {
+    this.isUserSignedInSubject.next(newStatus);
   }
 
   isSignedIn(): boolean {

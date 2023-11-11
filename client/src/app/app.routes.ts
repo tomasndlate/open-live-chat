@@ -6,7 +6,7 @@ export const AppRoutes: Routes = [
   {
     path: '',
     // Make sure to NOT import the Chat Module in the App Module - router url issue
-    redirectTo: '/chat',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -20,9 +20,17 @@ export const AppRoutes: Routes = [
     canActivate: [UnauthGuard]
   },
   {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(module => module.HomeModule)
+  },
+  {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then(module => module.ChatModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'project',
+    loadChildren: () => import('./pages/project/project.module').then(module => module.ProjectModule)
   },
   {
     path: '**',
