@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Message } from 'src/app/models/message';
 import { MessagesService } from 'src/app/services/messages/messages.service';
-import { SocketsService } from 'src/app/services/sockets/sockets.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,10 +12,10 @@ export class ChatComponent {
 
   messages: Message[] = [];
   message: string = "";
-  user: string = "teste";
+  username: string = "";
 
   constructor(
-    private socketsService: SocketsService,
+    private socketService: SocketService,
     private messagesService: MessagesService
   ) {}
 
@@ -31,13 +31,14 @@ export class ChatComponent {
 
   sendMessage(){
     const msg = {
-      sender: this.user,
+      sender: this.username,
       content: this.message
     }
-    this.socketsService.sendMessage(msg)
+    this.socketService.sendMessage(msg)
+    this.message = ""
   }
   getNewMessages(){
-    this.socketsService.getNewMessages().subscribe((msg) => {
+    this.socketService.getNewMessages().subscribe((msg) => {
       this.messages.push(msg)
       // data.content
     })
