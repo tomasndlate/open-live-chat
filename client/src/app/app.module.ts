@@ -7,7 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
 import { TopWarningLinkModule } from './components/top-warning-link/top-warning-link.module';
-import { NavbarModule } from './components/navbar/navbar.module';
+import { NavbarModule } from './layout/navbar/navbar.module';
+import { HomeComponent } from './pages/home/home.component';
+import { ProjectComponent } from './pages/project/project.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
