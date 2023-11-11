@@ -16,10 +16,8 @@ const sendMessage = (io, socket) => {
       
       io.emit('new-message', newMessage);
 
-      // res.status(201).json({ message: 'Message sent successfully', message: newMessage });
     } catch (error) {
       console.error(error);
-      // res.status(500).json({ message: 'Internal server error' });
     }
   })
   

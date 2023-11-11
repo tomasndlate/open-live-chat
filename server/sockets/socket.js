@@ -14,6 +14,7 @@ const initSocketOnServer = (server) => {
   // New connection
   io.on('connection', (socket) => {
     console.log('User connected!');
+    console.log(socket.request.connection._peername)
 
     // Disconnect
     socket.on('disconnect', () => {
