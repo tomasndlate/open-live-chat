@@ -10,6 +10,9 @@ import { TopWarningLinkModule } from './components/top-warning-link/top-warning-
 import { NavbarModule } from './layout/navbar/navbar.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectComponent } from './pages/project/project.component';
+import { MobileMenuComponent } from './layout/mobile-menu/mobile-menu.component';
+import { MobileMenuOpenBtnComponent } from './components/mobile-menu-open-btn/mobile-menu-open-btn.component';
+import { MobileMenuCloseBtnComponent } from './components/mobile-menu-close-btn/mobile-menu-close-btn.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
