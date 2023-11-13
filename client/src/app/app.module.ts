@@ -8,10 +8,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
 import { TopWarningLinkModule } from './components/top-warning-link/top-warning-link.module';
 import { NavbarModule } from './layout/navbar/navbar.module';
-import { HomeComponent } from './pages/home/home.component';
-import { ProjectComponent } from './pages/project/project.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.1.8:3000', options: {} };
 
 @NgModule({
     declarations: [

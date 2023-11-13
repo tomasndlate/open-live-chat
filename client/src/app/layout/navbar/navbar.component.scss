@@ -10,7 +10,37 @@ nav{
     backdrop-filter: blur(10px);
     background-color: rgba(19, 16, 16, 0.8);
     z-index: 100;
-    overflow: hidden;
+}
+
+/* 
+ -webkit-backdrop-filter - supported by Safari
+ backdrop-filter - supported by Google Chrome, Mozilla Firefo, Microsoft Edge and Safari 
+*/
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    nav {
+        backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 10, 0.8);
+    }
+}
+
+/* Others */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    nav {
+        background-color: rgba(6, 6, 6, 0.99);
+    }
+}
+
+// mobile menu position
+.nav-mobile-menu{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    // nav-bar 70px
+    height: calc(100dvh - 70px); 
+    // height: 100%;
+    width: 100%;
+    // background-color: rgb(158, 62, 62);
+    display: none;
 }
 
 .nav-width-constraint{
@@ -21,6 +51,24 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
+}
+
+.mobile-menu-open-btn{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu-close-btn{
+    position: relative;
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-self: end;
+    display: none;
 }
 
 .left-links{
@@ -39,6 +87,10 @@ a{
 .nav-logo{
     font-size: 26px;
     font-weight: 500;
+}
+
+.nav-logo::before{
+    content: "Open-Live-Chat";
 }
 
 .nav-link{
@@ -67,19 +119,10 @@ a{
     box-sizing: border-box;
 }
 
-.nav-sign-up:hover{
-    padding: 8px 12px;
-    border: 3px solid white;
-}
-
 .nav-sign-in{
     background-color: white;
     color: black;
 }
-
-.nav-sign-in:hover{
-    box-shadow: 0 10px 10px rgba(187, 188, 190, 0.05);
-    };
 
 .nav-sign-btn:nth-child(2){
     margin-left: 10px;
@@ -125,7 +168,81 @@ a{
     background-color: rgba(129, 125, 125, 0.5);
 }
 
-.active-sign-btn{
+.active-sign-in-btn{
     display: none;
     margin: 0;
+}
+
+.active-sign-up-btn {
+    display: none;
+    margin: 0;
+}
+
+
+@media screen and (max-width: 900px) {
+    .nav-mobile-menu{
+        display: block;
+    }
+
+    .nav-width-constraint {
+        display: grid;
+        grid-template-columns: 1fr 0.5fr 1fr;
+    }
+
+    .mobile-menu-open-btn {
+        display: inline-block;
+        grid-column: 1;
+    }
+
+    .mobile-menu-close-btn{
+        display: inline-block;
+        grid-column: 3;
+    }
+
+    // Contains logo
+    .left-links{
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        grid-column: 2;
+    }
+
+    .nav-logo::before {
+        content: "OLC";
+    }
+
+    .right-links-signed-out{
+        position: relative;
+        width: 100%;
+        justify-content: right;
+        grid-column: 3;
+    }
+
+    .nav-link{
+        display: none;
+    }
+
+    .nav-sign-up-mobile-view {
+        display: none;
+    } 
+
+    .right-links-signed-in {
+        gap: 0;
+        justify-content: end;
+    }
+
+    .nav-username{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .nav-sign-up:hover {
+        padding: 8px 12px;
+        border: 3px solid white;
+    }
+
+    .nav-sign-in:hover {
+        box-shadow: 0 10px 10px rgba(187, 188, 190, 0.05);
+    }
 }

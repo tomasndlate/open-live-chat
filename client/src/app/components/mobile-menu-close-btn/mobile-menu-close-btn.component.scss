@@ -1,0 +1,24 @@
+.menu-close-btn {
+    position: relative;
+    align-self: right;
+    width: 20px;
+    height: 20px;
+}
+
+.menu-close-btn li {
+    position: absolute;
+    list-style: none;
+    top: 50%;
+    left: 50%;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+}
+
+.menu-close-btn li:first-child{
+    transform: translate(-50%, -50%)rotate(45deg);
+}
+
+.menu-close-btn li:last-child {
+    transform: translate(-50%, -50%)rotate(-45deg);
+}

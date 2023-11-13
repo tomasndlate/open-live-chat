@@ -1,0 +1,17 @@
+.menu-open-btn{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-open-btn li{
+    position: relative;
+    list-style: none;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+}
