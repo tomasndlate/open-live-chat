@@ -23,6 +23,6 @@
         </div>
     </div>
     <div *ngIf="isMobileMenuOpen" class="nav-mobile-menu">
-        <app-mobile-menu></app-mobile-menu>
+        <app-mobile-menu (childCloseMobileMenu)="closeMobileMenu()" [isUserAuthenticated]="isSignedIn"></app-mobile-menu>
     </div>
 </nav>

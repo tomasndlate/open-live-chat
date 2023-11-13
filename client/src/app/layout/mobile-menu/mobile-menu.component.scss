@@ -1,9 +1,92 @@
 .mobile-menu{
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     // nav-bar 70px
-    height: calc(100% - 70px);
+    height: 100%;
     width: 100%;
-    background-color: rgb(158, 62, 62);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    padding: 15px;
+    border-top: 1px solid rgba(60, 60, 60, 0.5);
+}
+
+/* ONLY SAFARI SUPPORTS BACKDROP TWICE IN SAME ELEMENT - (NAV --> MOBILE-MENU)
+ -webkit-backdrop-filter - supported by Safari
+ backdrop-filter - supported by Google Chrome, Mozilla Firefo, Microsoft Edge and Safari 
+*/
+@supports (-webkit-backdrop-filter: blur(10px)) {
+    .mobile-menu {
+        backdrop-filter: blur(10px);
+        background-color: rgba(10, 10, 10, 0.8);
+    }
+}
+
+/* Others */
+@supports not (-webkit-backdrop-filter: blur(10px)) {
+    .mobile-menu {
+        background-color: rgba(6, 6, 6, 0.99);
+    }
+}
+
+a{
+    text-decoration: none;
+}
+
+.mobile-menu-section{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+// NAVIGATION BUTTONS
+.navigation-links{
+    padding-bottom: 20px;
+}
+
+.navigation-links a{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+// SIGN IN/UP BUTTONS
+.sign-links{
+    padding: 20px 0;
+    border-top: 1px solid rgba(60, 60, 60, 0.5);
+}
+
+.sign-btn i{
+    font-size: 16px;
+    -webkit-text-stroke-width: .8px;
+}
+
+.sign-btn.signin i{
+    margin-right: 10px;
+}
+
+.sign-btn.signup i{
+    padding-left: 2px;
+    margin-right: 8px;
+}
+
+.sign-btn span{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+// SOCIAL MEDIA LINKS
+.social-links{
+    flex-direction: row;
+    justify-content: start;
+    padding-top: 20px;
+    border-top: 1px solid rgba(60, 60, 60, 0.5);
+}
+
+.social-links a{
+    font-size: 20px;
 }

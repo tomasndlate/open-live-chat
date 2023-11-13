@@ -1,1 +1,25 @@
-<div class="mobile-menu"></div>
+<div class="mobile-menu">
+    <div class="up-links">
+        <div class="mobile-menu-section navigation-links">
+            <a routerLink="/home" (click)="closeMenu()">Home</a>
+            <a routerLink="/chat" (click)="closeMenu()">Chat</a>
+            <a routerLink="/project" (click)="closeMenu()">Project</a>
+        </div>
+    </div>
+    <div class="down-links">
+        <div *ngIf="!isUserAuthenticated" class="mobile-menu-section sign-links">
+            <a class="sign-btn signin" routerLink="/signin" (click)="closeMenu()">
+                <i class="bi bi-person"></i>
+                <span>Sign in</span>
+            </a>
+            <a class="sign-btn signup" routerLink="/signup" (click)="closeMenu()">
+                <i class="bi bi-person-plus"></i>
+                <span>Register</span>
+            </a>
+        </div>
+        <div class="mobile-menu-section social-links">
+            <a href="https://github.com/tomasndlate" target="_blank" (click)="closeMenu()"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/tomasndlate/" target="_blank" (click)="closeMenu()"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </div>
+</div>

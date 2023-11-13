@@ -12,15 +12,34 @@ nav{
     z-index: 100;
 }
 
+/* 
+ -webkit-backdrop-filter - supported by Safari
+ backdrop-filter - supported by Google Chrome, Mozilla Firefo, Microsoft Edge and Safari 
+*/
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    nav {
+        backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 10, 0.8);
+    }
+}
+
+/* Others */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    nav {
+        background-color: rgba(6, 6, 6, 0.99);
+    }
+}
+
 // mobile menu position
 .nav-mobile-menu{
     position: fixed;
     top: 70px;
     left: 0;
     // nav-bar 70px
-    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px); 
+    // height: 100%;
     width: 100%;
-    background-color: rgb(158, 62, 62);
+    // background-color: rgb(158, 62, 62);
     display: none;
 }
 
@@ -40,6 +59,7 @@ nav{
     height: fit-content;
     width: fit-content;
     display: none;
+    cursor: pointer;
 }
 
 .mobile-menu-close-btn{
@@ -205,6 +225,15 @@ a{
     .nav-sign-up-mobile-view {
         display: none;
     } 
+
+    .right-links-signed-in {
+        gap: 0;
+        justify-content: end;
+    }
+
+    .nav-username{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 901px) {

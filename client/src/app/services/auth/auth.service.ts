@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/authentication'
+  private apiUrl = 'http://192.168.1.8:3000/authentication'
 
   private isUserSignedInSubject = new BehaviorSubject<boolean>(false);
   isUserSignedIn: Observable<boolean> = this.isUserSignedInSubject.asObservable();

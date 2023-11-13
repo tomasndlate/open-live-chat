@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -17,7 +17,7 @@ export class NavbarComponent {
   isSignInVisible: boolean = false;
   isSignUpVisible: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private renderer: Renderer2) {}
 
   ngOnInit(){
     this.authService.isUserSignedIn.subscribe((userStatus) => {
@@ -40,11 +40,21 @@ export class NavbarComponent {
     });
   }
 
-  openMobileMenu(){
+  openMobileMenu(): void {
     this.isMobileMenuOpen = true;
+    this.disableBodyScroll();
   }
 
-  closeMobileMenu(){
+  closeMobileMenu(): void {
     this.isMobileMenuOpen = false;
+    this.enableBodyScroll();
+  }
+
+  enableBodyScroll() {
+    this.renderer.removeClass(document.body, 'no-scroll-body');
+  }
+
+  disableBodyScroll() {
+    this.renderer.addClass(document.body, 'no-scroll-body');
   }
 }
