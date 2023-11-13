@@ -9,6 +9,8 @@ import { NavbarModule } from './layout/navbar/navbar.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MobileMenuModule } from './layout/mobile-menu/mobile-menu.module';
+import { ProfileSideMenuModule } from './layout/profile-side-menu/profile-side-menu.module';
 
 const config: SocketIoConfig = { url: 'http://192.168.1.8:3000', options: {} };
 
@@ -26,6 +28,8 @@ const config: SocketIoConfig = { url: 'http://192.168.1.8:3000', options: {} };
       ClipboardModule,
       TopWarningLinkModule,
       NavbarModule,
+      MobileMenuModule,
+      ProfileSideMenuModule
     ]
 })
 export class AppModule { }

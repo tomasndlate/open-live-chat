@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MobileMenuComponent {
   @Output() childCloseMobileMenu = new EventEmitter<void>();
+  @Input() isMobileMenuOpen: boolean = false;
   @Input() isUserAuthenticated: boolean = true; 
 
   closeMenu(){

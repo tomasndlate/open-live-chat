@@ -1,4 +1,28 @@
-<app-navbar></app-navbar>
+<app-navbar 
+    [isMobileMenuOpen]="isMobileMenuOpen"
+    [isProfileMenuOpen]="isProfileMenuOpen"
+    [isUserSignedIn]="isUserSignedIn"
+    (eventOpenMobileMenu)="openMobileMenu()"
+    (eventCloseMobileMenu)="closeMobileMenu()"
+    (eventOpenProfileMenu)="openProfileMenu()"
+    (eventCloseProfileMenu)="closeProfileMenu()"
+></app-navbar>
+
+<!-- <div *ngIf="isMobileMenuOpen" class="nav-mobile-menu"> -->
+<app-mobile-menu 
+    [isMobileMenuOpen]="isMobileMenuOpen" 
+    [isUserAuthenticated]="isUserSignedIn"
+    (childCloseMobileMenu)="closeMobileMenu()"
+></app-mobile-menu>
+<!-- </div> -->
+<!-- <div *ngIf="isUserSignedIn && isProfileMenuOpen" class="profile-side-menu-section"> -->
+    <!-- <div (click)="closeProfileMenu()" class="profile-side-menu-background-close"></div> -->
+<app-profile-side-menu 
+    [isUserSignedIn]="isUserSignedIn" 
+    [isProfileMenuOpen]="isProfileMenuOpen" 
+    (childCloseProfileMenu)="closeProfileMenu()"
+></app-profile-side-menu>
+<!-- </div> -->
 
 <app-top-warning-link></app-top-warning-link>
 

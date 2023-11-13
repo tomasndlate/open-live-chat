@@ -1,3 +1,32 @@
+// profile side menu
+.profile-side-menu-section {
+    position: fixed;
+    top: 0;
+    float: right;
+    right: 0;
+    height: calc(100dvh);
+    width: calc(100vw - 60px);
+    max-width: 350px;
+    z-index: 101;
+    // background-color: rgb(158, 62, 62);
+}
+
+.profile-side-menu-background-close {
+    position: fixed;
+    float: right;
+    top: 0;
+    right: 0;
+    height: calc(100dvh);
+    width: calc(100dvw);
+    background-color: rgba(37, 37, 37, 0.5);
+}
+
+@supports (-webkit-backdrop-filter: blur(1px)) {
+    .profile-side-menu-background-close {
+        backdrop-filter: blur(1px);
+    }
+}
+
 .profile-side-menu {
     position: absolute;
     width: 100%;
