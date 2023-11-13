@@ -11,6 +11,8 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: white;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
 }
 
 body{
@@ -21,6 +23,14 @@ body{
 
 .no-scroll-body {
     overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
 }
 
 // Almost all text

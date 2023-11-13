@@ -70,7 +70,8 @@ export class AuthService {
 
   signOut() {
     removeToken();
-    this.router.navigate(['/signin'])
+    this.setUserSignStatus(false);
+    // this.router.navigate(['/signin'])
   }
 
   private setUserSignStatus(newStatus: boolean): void {

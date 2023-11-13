@@ -16,7 +16,7 @@
         </div>
         <div *ngIf="isSignedIn && !isMobileMenuOpen" class="right-links-signed-in">
             <h5 class="nav-username">tomasndlate</h5>
-            <div class="nav-user-btn"></div>
+            <button (click)="openProfileMenu()" class="nav-user-btn"></button>
         </div>
         <div *ngIf="isMobileMenuOpen" class="mobile-menu-close-btn" (click)="closeMobileMenu()">
             <app-mobile-menu-close-btn></app-mobile-menu-close-btn>
@@ -24,5 +24,9 @@
     </div>
     <div *ngIf="isMobileMenuOpen" class="nav-mobile-menu">
         <app-mobile-menu (childCloseMobileMenu)="closeMobileMenu()" [isUserAuthenticated]="isSignedIn"></app-mobile-menu>
+    </div>
+    <div *ngIf="isSignedIn && isProfileMenuVisible" class="profile-side-menu-section">
+        <div (click)="closeProfileMenu()" class="profile-side-menu-background-close"></div>
+        <app-profile-side-menu (childCloseProfileMenu)="closeProfileMenu()"></app-profile-side-menu>
     </div>
 </nav>

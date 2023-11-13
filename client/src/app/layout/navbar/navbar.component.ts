@@ -1,5 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+// import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -16,6 +17,8 @@ export class NavbarComponent {
 
   isSignInVisible: boolean = false;
   isSignUpVisible: boolean = false;
+
+  isProfileMenuVisible: boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private renderer: Renderer2) {}
 
@@ -48,6 +51,14 @@ export class NavbarComponent {
   closeMobileMenu(): void {
     this.isMobileMenuOpen = false;
     this.enableBodyScroll();
+  }
+
+  openProfileMenu(): void {
+    this.isProfileMenuVisible = true;
+  }
+
+  closeProfileMenu(): void {
+    this.isProfileMenuVisible = false;
   }
 
   enableBodyScroll() {
