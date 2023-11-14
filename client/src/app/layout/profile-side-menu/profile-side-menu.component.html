@@ -5,10 +5,9 @@
             <div class="side-menu-section user-details-section">
                 <div class="user-details">
                     <div class="user-photo"></div>
-                    <span class="user-username">tomasndlate</span>
+                    <span class="user-username">{{user.username}}</span>
                 </div>
                 <i (click)="copyToClipboard()" class="bi" [ngClass]="copyIcon"></i>
-                <!-- <i class="bi bi-check"></i> -->
             </div>
             <div class="side-menu-section navigation-links">
                 <a routerLink="/signin">

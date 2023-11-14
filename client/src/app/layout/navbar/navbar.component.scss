@@ -119,9 +119,11 @@ a{
 .right-links-signed-in {
     position: relative;
     height: fit-content;
+    width: fit-content;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-self: end;
 }
 
 .nav-username{

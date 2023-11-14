@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Message } from 'src/app/models/message';
+import { Message } from 'src/app/models/Message';
 import { SocketService } from '../socket/socket.service';
 
 import { getToken } from '../../utils/tokenUtils';

@@ -14,3 +14,26 @@ a{
     font-family: 'Sometype Mono', monospace;
     font-size: 14px;
 }
+
+.top-warning-link span{
+    font-weight: 500;
+}
+
+// Big screen
+.top-warning-link::before {
+    content: "Check out other projects in ";
+}
+.top-warning-link::after{
+    content: " GitHub. Go take a look!";
+}
+
+@media screen and (max-width: 700px) {
+    // Small screen
+    .top-warning-link::before {
+        content: "Other projects in ";
+    }
+
+    .top-warning-link::after {
+        content: " GitHub.";
+    }
+}

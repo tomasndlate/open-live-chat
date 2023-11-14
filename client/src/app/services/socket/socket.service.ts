@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
-import { Message } from 'src/app/models/message';
+import { Message } from 'src/app/models/Message';
 
 @Injectable({
   providedIn: 'root'

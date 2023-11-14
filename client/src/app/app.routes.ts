@@ -26,7 +26,7 @@ export const AppRoutes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then(module => module.ChatModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'project',

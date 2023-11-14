@@ -1,6 +1,8 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
+import { UserService } from './services/user/user.service';
+import { User } from './models/User';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,9 @@ export class AppComponent {
   isUserSignedIn: boolean = false;
   isProfileMenuOpen: boolean = false;
 
-  constructor(private authService: AuthService, private renderer: Renderer2) {}
+  user: User = {username: ""}
+
+  constructor(private authService: AuthService, private userService: UserService, private renderer: Renderer2) {}
 
   ngOnInit(){
     this.getUserAuthStatus();
@@ -21,11 +25,22 @@ export class AppComponent {
   getUserAuthStatus(){
     this.authService.isUserSignedIn.subscribe((userStatus) => {
       this.isUserSignedIn = userStatus;
+
+      console.log(`HEREEE ${userStatus}`)
+
+      if (userStatus) {
+        this.getUserIfSignIn();
+      }
+    })
+  }
+
+  getUserIfSignIn(){
+    this.userService.getUser().subscribe(user => {
+      this.user = user
     })
   }
 
   openMobileMenu(): void {
-    console.log("open mobile menu")
     this.isMobileMenuOpen = true;
     this.disableBodyScroll();
   }
@@ -37,10 +52,12 @@ export class AppComponent {
 
   openProfileMenu(): void {
     this.isProfileMenuOpen = true;
+    this.disableBodyScroll();
   }
 
   closeProfileMenu(): void {
     this.isProfileMenuOpen = false;
+    this.enableBodyScroll();
   }
 
   enableBodyScroll() {

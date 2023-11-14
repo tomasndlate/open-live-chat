@@ -15,7 +15,7 @@
             <a *ngIf="isSignInVisible" class="nav-sign-btn nav-sign-in" routerLink="/signin" routerLinkActive="active-sign-in-btn">Sign in</a>
         </div>
         <div *ngIf="isUserSignedIn && !isMobileMenuOpen" class="right-links-signed-in">
-            <h5 class="nav-username">tomasndlate</h5>
+            <h5 class="nav-username">{{user.username}}</h5>
             <button (click)="openProfileMenu()" class="nav-user-btn"></button>
         </div>
         <div *ngIf="isMobileMenuOpen" class="mobile-menu-close-btn" (click)="closeMobileMenu()">

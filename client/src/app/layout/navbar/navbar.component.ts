@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 // import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,23 +22,17 @@ export class NavbarComponent {
   @Input() isUserSignedIn: boolean = false;
   @Input() isProfileMenuOpen: boolean = false;
 
-
-  // isSignedIn: boolean = false;
-
   signUpBtnMobileView = "";
-  // isMobileMenuOpen = false;
-
   isSignInVisible: boolean = false;
   isSignUpVisible: boolean = false;
 
-  // isProfileMenuVisible: boolean = false;
+  @Input() user: User = {username: ""}
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private renderer: Renderer2) {}
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {}
 
   ngOnInit(){
-    this.authService.isUserSignedIn.subscribe((userStatus) => {
-      this.isUserSignedIn = userStatus;
-    })
+    // this.getUserAuth();
+    // this.getUser();
     this.viewSignUpBtnMobile()
   }
 
@@ -55,22 +51,30 @@ export class NavbarComponent {
   }
 
   openMobileMenu(): void {
-    // this.isMobileMenuOpen = true;
     this.eventOpenMobileMenu.emit();
   }
 
   closeMobileMenu(): void {
-    // this.isMobileMenuOpen = false;
     this.eventCloseMobileMenu.emit();
   }
 
   openProfileMenu(): void {
-    // this.isProfileMenuVisible = true;
     this.eventOpenProfileMenu.emit();
   }
 
   closeProfileMenu(): void {
     this.eventCloseProfileMenu.emit();
-    // this.isProfileMenuVisible = false;
   }
+
+  // getUserAuth(){
+  //   this.authService.isUserSignedIn.subscribe((userStatus) => {
+  //     this.isUserSignedIn = userStatus;
+  //   })
+  // }
+
+  // getUser(){
+  //   this.userService.user.subscribe((userStatus) => {
+  //     this.user = userStatus;
+  //   })
+  // }
 }
