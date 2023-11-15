@@ -1,6 +1,29 @@
-<app-navbar></app-navbar>
+
+<app-navbar 
+    [isMobileMenuOpen]="isMobileMenuOpen"
+    [isProfileMenuOpen]="isProfileMenuOpen"
+    [isUserSignedIn]="isUserSignedIn"
+    [user]="user"
+    (eventOpenMobileMenu)="openMobileMenu()"
+    (eventCloseMobileMenu)="closeMobileMenu()"
+    (eventOpenProfileMenu)="openProfileMenu()"
+    (eventCloseProfileMenu)="closeProfileMenu()"
+></app-navbar>
 
 <app-top-warning-link></app-top-warning-link>
+
+<app-mobile-menu 
+    [isMobileMenuOpen]="isMobileMenuOpen" 
+    [isUserAuthenticated]="isUserSignedIn"
+    (childCloseMobileMenu)="closeMobileMenu()"
+></app-mobile-menu>
+
+<app-profile-side-menu 
+    [isUserSignedIn]="isUserSignedIn" 
+    [isProfileMenuOpen]="isProfileMenuOpen"
+    [user]="user" 
+    (childCloseProfileMenu)="closeProfileMenu()"
+></app-profile-side-menu>
 
 <div class="content">
     <router-outlet></router-outlet>

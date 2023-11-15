@@ -1,4 +1,4 @@
-<div class="mobile-menu">
+<div *ngIf="isMobileMenuOpen" class="mobile-menu">
     <div class="up-links">
         <div class="mobile-menu-section navigation-links">
             <a routerLink="/home" (click)="closeMenu()">Home</a>

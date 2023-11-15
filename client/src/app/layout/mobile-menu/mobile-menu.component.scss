@@ -1,16 +1,16 @@
 .mobile-menu{
-    position: relative;
-    bottom: 0;
+    position: fixed;
+    top: 70px;
     left: 0;
-    // nav-bar 70px
-    height: 100%;
+    height: calc(100dvh - 70px);
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto;
     padding: 15px;
     border-top: 1px solid rgba(60, 60, 60, 0.5);
+    z-index: 101;
 }
 
 /* ONLY SAFARI SUPPORTS BACKDROP TWICE IN SAME ELEMENT - (NAV --> MOBILE-MENU)
@@ -85,4 +85,10 @@
 
 .social-links a{
     font-size: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .mobile-menu {
+        display: flex;
+    }
 }

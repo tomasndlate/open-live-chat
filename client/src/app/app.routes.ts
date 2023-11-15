@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { AuthGuard } from "./guards/auth.guard";
 import { UnauthGuard } from "./guards/unauth.guard";
 
 export const AppRoutes: Routes = [
@@ -25,8 +24,7 @@ export const AppRoutes: Routes = [
   },
   {
     path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then(module => module.ChatModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/chat/chat.module').then(module => module.ChatModule)
   },
   {
     path: 'project',

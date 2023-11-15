@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 // import { Clipboard } from '@angular/cdk/clipboard';
 import { ClipboardService } from 'ngx-clipboard'
+import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -11,6 +12,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class ProfileSideMenuComponent {
 
   @Output() childCloseProfileMenu = new EventEmitter<void>();
+  @Input() isUserSignedIn: boolean = false;
+  @Input() isProfileMenuOpen: boolean = false;
+  @Input() user: User = {username: ""};
 
   copyIcon = "bi-copy"
 
@@ -20,9 +24,13 @@ export class ProfileSideMenuComponent {
     this.authService.signOut();
     this.childCloseProfileMenu.emit();
   }
+
+  closeProfileMenu(){
+    this.childCloseProfileMenu.emit();
+  }
     
   copyToClipboard() {
-    this.clipboardService.copy("aaahh");
+    this.clipboardService.copy(this.user.username);
     this.copyIcon = "bi-check2 green-check";
     setTimeout( () => { 
       this.copyIcon = "bi-copy";

@@ -10,6 +10,7 @@ const socket = require('./sockets/socket');
 // Import Routes
 const authenticationRoute = require('./routes/authenticationRoute');
 const messageRoute = require('./routes/messageRoute');
+const userRoute = require('./routes/userRoute');
 // Define variables
 const port = 3000;
 const app = express();
@@ -27,6 +28,7 @@ socket.initSocketOnServer(server)
 // HTTP Methods Routes
 app.use('/authentication', authenticationRoute)
 app.use('/messages', messageRoute);
+app.use('/user', userRoute)
 
 // Start the server
 server.listen(port, () => {

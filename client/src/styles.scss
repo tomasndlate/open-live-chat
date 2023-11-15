@@ -11,13 +11,18 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: white;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
+    -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
 }
 
 body{
-    background-color: #0d1a27;
-    // Padding to not be hidden by navbar
+    background-color: #121212;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-top: 70px;
 }
 

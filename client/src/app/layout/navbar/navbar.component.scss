@@ -30,44 +30,6 @@ nav{
     }
 }
 
-// mobile menu position
-.nav-mobile-menu{
-    position: fixed;
-    top: 70px;
-    left: 0;
-    height: calc(100dvh - 70px);
-    width: 100%;
-    display: none;
-}
-
-// profile side menu
-.profile-side-menu-section{
-    position: fixed;
-    top: 0;
-    float: right;
-    right: 0;
-    height: calc(100dvh);
-    width: calc(100vw - 60px);
-    max-width: 350px;
-    // background-color: rgb(158, 62, 62);
-}
-
-.profile-side-menu-background-close{
-    position: fixed;
-    float: right;
-    top: 0;
-    right: 0;
-    height: calc(100dvh);
-    width: calc(100dvw);
-    background-color: rgba(37, 37, 37, 0.5);
-}
-
-@supports (-webkit-backdrop-filter: blur(1px)) {
-    .profile-side-menu-background-close {
-        backdrop-filter: blur(1px);
-    }
-}
-
 .nav-width-constraint{
     position: relative;
     height: fit-content;
@@ -157,9 +119,11 @@ a{
 .right-links-signed-in {
     position: relative;
     height: fit-content;
+    width: fit-content;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-self: end;
 }
 
 .nav-username{
@@ -206,10 +170,6 @@ a{
 
 
 @media screen and (max-width: 900px) {
-    .nav-mobile-menu{
-        display: block;
-    }
-
     .nav-width-constraint {
         display: grid;
         grid-template-columns: 1fr 0.5fr 1fr;

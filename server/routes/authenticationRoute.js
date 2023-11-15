@@ -1,6 +1,7 @@
 // routes/authenticationRoutes.js
 const express = require('express');
 const User = require('../models/User');
+const authenticate = require('../middleware/authenticate');
 
 const router = express.Router();
 
@@ -48,5 +49,9 @@ router.post('/signin', async (req, res) => {
         res.status(500).send('Error signing in');
   }
 });
+
+router.get('/validate-token', authenticate, (req, res) => {
+    res.status(200).json(true)
+})
 
 module.exports = router;
