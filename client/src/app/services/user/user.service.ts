@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { getToken } from 'src/app/utils/tokenUtils';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   private apiUrl = 'http://192.168.1.8:3000/user';
 
   private emptyUser = {
@@ -16,34 +16,52 @@ export class UserService {
   }
 
   private userSubject = new BehaviorSubject<User>(this.emptyUser);
-  user: Observable<User> = this.userSubject.asObservable();
+  userObservable: Observable<User> = this.userSubject.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.getUser();
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.authService.isUserLoggedIn.subscribe({
+      next: isLogged => {
+        if(isLogged) {
+          this.updateUser_IfLogged();
+        }
+      }
+    })
   }
 
-  private setUser(currentUser: User): void {
-    this.userSubject.next(currentUser);
+  private setUser(newUser: User): void {
+    this.userSubject.next(newUser);
   }
 
-  getUser(): Observable<User> {
+  updateUser_IfLogged(): void {
+    this.http_getUser().subscribe({
+      next: (user) => {
+        this.setUser(user)
+      },
+      error: (error) => {
+        console.log(`Update user error - ${error}`)
+      },
+      complete: () => console.log('Update user if logged - complete')
+    })
+  }
+
+  http_getUser(): Observable<User> {
+    const token = localStorage.getItem('authToken');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'ResponseType': 'json',
-        'Authorization': `Bearer ${getToken()}`,
+        'Authorization': `Bearer ${token}`,
       }),
     };
 
     return this.http.get<User>(`${this.apiUrl}/get-self-user`, httpOptions).pipe(
-      map((response: any) => {
-        // console.log(`Service ${response}`)
-          const user = {
+      map((response) => {
+          const user: User = {
             username: response.username
           };
 
-          this.setUser(user)
-          return user as User;
+          // this.setUser(user)
+          return user;
       }),
       catchError((error) => {
         return throwError(() => error);

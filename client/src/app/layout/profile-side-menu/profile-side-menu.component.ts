@@ -30,7 +30,7 @@ export class ProfileSideMenuComponent {
   }
     
   copyToClipboard() {
-    this.clipboardService.copy("aaahh");
+    this.clipboardService.copy(this.user.username);
     this.copyIcon = "bi-check2 green-check";
     setTimeout( () => { 
       this.copyIcon = "bi-copy";

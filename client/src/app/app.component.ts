@@ -1,5 +1,4 @@
 import { Component, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
 import { User } from './models/User';
@@ -23,22 +22,32 @@ export class AppComponent {
   }
 
   getUserAuthStatus(){
-    this.authService.isUserSignedIn.subscribe((userStatus) => {
-      this.isUserSignedIn = userStatus;
-
-      console.log(`HEREEE ${userStatus}`)
-
-      if (userStatus) {
-        this.getUserIfSignIn();
-      }
+    this.authService.isUserLoggedIn.subscribe({
+      next: userStatus => {
+        this.isUserSignedIn = userStatus;
+        if (userStatus) {
+          this.getUser_Observable();
+        }
+      },
+      error: error => {
+        console.log(`Get user auth status error - ${error}`)
+      },
+      complete: () => console.log(`Get user auth status - completed`)
     })
   }
 
-  getUserIfSignIn(){
-    this.userService.getUser().subscribe(user => {
-      this.user = user
+  getUser_Observable(){
+    this.userService.userObservable.subscribe({
+      next: user => {
+        this.user = user;
+      },
+      error: error => {
+        console.log(`Get user if sign in error - ${error}`)
+      },
+      complete: () => console.log('Get user if sign in - complete')
     })
   }
+
 
   openMobileMenu(): void {
     this.isMobileMenuOpen = true;

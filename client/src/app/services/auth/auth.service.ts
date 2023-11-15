@@ -1,23 +1,74 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
-import { setToken, getToken, removeToken } from '../../utils/tokenUtils';
-import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, catchError, map, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://192.168.1.8:3000/authentication'
+  private token: string | null = null;
 
-  private isUserSignedInSubject = new BehaviorSubject<boolean>(false);
-  isUserSignedIn: Observable<boolean> = this.isUserSignedInSubject.asObservable();
+  private apiUrl = 'http://192.168.1.8:3000/authentication';
 
-  constructor(private http: HttpClient, private router: Router) {
+  private isUserLoggedInSubject = new BehaviorSubject<boolean>(false);
+  isUserLoggedIn: Observable<boolean> = this.isUserLoggedInSubject.asObservable();
+
+  constructor(private http: HttpClient) {
     // First time called set the user status at the moment
-    this.setUserSignStatus(this.isSignedIn())
+    this.token = localStorage.getItem('authToken');
+    this.updateLoggedStatus()
   }
+
+  private setToken(token: string | null){
+    if (!!token) {
+      localStorage.setItem('authToken', token);
+    } else {
+      localStorage.removeItem('authToken');
+    }
+    this.token = token;
+  }
+  
+  private isTokenValid(token: string): Observable<boolean> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ResponseType': 'json',
+        'Authorization': `Bearer ${token}`,
+      }),
+    };
+
+    return this.http.get<boolean>(`${this.apiUrl}/validate-token`, httpOptions)
+      .pipe(
+        catchError(error => {
+          console.error('Error validating token:', error);
+          return of(false); // Assuming an error means the token is not valid
+        })
+      );
+  }
+
+  updateLoggedStatus(): void {
+    if (!!this.token) {
+      this.isTokenValid(this.token).subscribe({
+        next: isTokenValid => {
+          this.setUserLoggedStatus(isTokenValid);
+        },
+        error: error => {
+          console.error('Error checking token expiration:', error);
+          this.setUserLoggedStatus(false);
+        },
+        complete: () => console.log('Update Logged Status')
+      })
+    } else {
+      this.setUserLoggedStatus(false);
+    }
+  }
+  
+  private setUserLoggedStatus(newStatus: boolean): void {
+    this.isUserLoggedInSubject.next(newStatus);
+  }
+
 
   signIn(username: string, password: string): Observable<boolean> {
     const credentials = {username, password}
@@ -31,7 +82,7 @@ export class AuthService {
         const token = response.token;
         if (token) {
           this.setToken(response.token);
-          this.setUserSignStatus(true);
+          this.setUserLoggedStatus(true);
           return true;
         } else {
           return false;
@@ -56,7 +107,7 @@ export class AuthService {
         const token = response.token;
         if (token) {
           this.setToken(response.token);
-          this.setUserSignStatus(true);
+          this.setUserLoggedStatus(true);
           return true;
         } else {
           return false;
@@ -69,42 +120,9 @@ export class AuthService {
   }
 
   signOut() {
-    removeToken();
-    this.setUserSignStatus(false);
+    this.setToken(null);
+    // removeToken();
+    this.setUserLoggedStatus(false);
     // this.router.navigate(['/signin'])
-  }
-
-  private setUserSignStatus(newStatus: boolean): void {
-    this.isUserSignedInSubject.next(newStatus);
-  }
-
-  isSignedIn(): boolean {
-    if (getToken()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  isSignedOut(): boolean {
-    if (getToken()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-  
-  private setToken(token: string){
-    setToken(token);
-  }
-
-  isAuthenticated(): boolean {
-    const token = getToken();
-    
-    if (!!token){
-      return true;
-    } else {
-      return false
-    }
   }
 }
