@@ -1,7 +1,10 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+// import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,20 +12,27 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  isSignedIn: boolean = false;
+
+  @Output() eventOpenMobileMenu = new EventEmitter<void>();
+  @Output() eventCloseMobileMenu = new EventEmitter<void>();
+  @Output() eventOpenProfileMenu = new EventEmitter<void>();
+  @Output() eventCloseProfileMenu = new EventEmitter<void>();
+
+  @Input() isMobileMenuOpen: boolean = false;
+  @Input() isUserSignedIn: boolean = false;
+  @Input() isProfileMenuOpen: boolean = false;
 
   signUpBtnMobileView = "";
-  isMobileMenuOpen = false;
-
   isSignInVisible: boolean = false;
   isSignUpVisible: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private renderer: Renderer2) {}
+  @Input() user: User = {username: ""}
+
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {}
 
   ngOnInit(){
-    this.authService.isUserSignedIn.subscribe((userStatus) => {
-      this.isSignedIn = userStatus;
-    })
+    // this.getUserAuth();
+    // this.getUser();
     this.viewSignUpBtnMobile()
   }
 
@@ -41,20 +51,30 @@ export class NavbarComponent {
   }
 
   openMobileMenu(): void {
-    this.isMobileMenuOpen = true;
-    this.disableBodyScroll();
+    this.eventOpenMobileMenu.emit();
   }
 
   closeMobileMenu(): void {
-    this.isMobileMenuOpen = false;
-    this.enableBodyScroll();
+    this.eventCloseMobileMenu.emit();
   }
 
-  enableBodyScroll() {
-    this.renderer.removeClass(document.body, 'no-scroll-body');
+  openProfileMenu(): void {
+    this.eventOpenProfileMenu.emit();
   }
 
-  disableBodyScroll() {
-    this.renderer.addClass(document.body, 'no-scroll-body');
+  closeProfileMenu(): void {
+    this.eventCloseProfileMenu.emit();
   }
+
+  // getUserAuth(){
+  //   this.authService.isUserSignedIn.subscribe((userStatus) => {
+  //     this.isUserSignedIn = userStatus;
+  //   })
+  // }
+
+  // getUser(){
+  //   this.userService.user.subscribe((userStatus) => {
+  //     this.user = userStatus;
+  //   })
+  // }
 }

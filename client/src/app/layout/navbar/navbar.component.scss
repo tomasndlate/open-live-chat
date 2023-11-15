@@ -30,19 +30,6 @@ nav{
     }
 }
 
-// mobile menu position
-.nav-mobile-menu{
-    position: fixed;
-    top: 70px;
-    left: 0;
-    // nav-bar 70px
-    height: calc(100dvh - 70px); 
-    // height: 100%;
-    width: 100%;
-    // background-color: rgb(158, 62, 62);
-    display: none;
-}
-
 .nav-width-constraint{
     position: relative;
     height: fit-content;
@@ -132,9 +119,11 @@ a{
 .right-links-signed-in {
     position: relative;
     height: fit-content;
+    width: fit-content;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-self: end;
 }
 
 .nav-username{
@@ -149,6 +138,7 @@ a{
     background-color: rgb(141, 79, 90);
     border-radius: 100px;
     cursor: pointer;
+    border: none;
 }
 
 // Router navigation details
@@ -180,10 +170,6 @@ a{
 
 
 @media screen and (max-width: 900px) {
-    .nav-mobile-menu{
-        display: block;
-    }
-
     .nav-width-constraint {
         display: grid;
         grid-template-columns: 1fr 0.5fr 1fr;

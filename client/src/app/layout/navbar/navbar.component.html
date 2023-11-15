@@ -10,19 +10,16 @@
             <a class="nav-link" routerLink="/chat" routerLinkActive="active-link">Chat</a>
             <a class="nav-link" routerLink="/project" routerLinkActive="active-link">Project</a>
         </div>
-        <div *ngIf="!isSignedIn && !isMobileMenuOpen" class="right-links-signed-out">
+        <div *ngIf="!isUserSignedIn && !isMobileMenuOpen" class="right-links-signed-out">
             <a *ngIf="isSignUpVisible" class="nav-sign-btn nav-sign-up" [ngClass]="signUpBtnMobileView" routerLink="/signup" routerLinkActive="active-sign-up-btn">Register</a>
             <a *ngIf="isSignInVisible" class="nav-sign-btn nav-sign-in" routerLink="/signin" routerLinkActive="active-sign-in-btn">Sign in</a>
         </div>
-        <div *ngIf="isSignedIn && !isMobileMenuOpen" class="right-links-signed-in">
-            <h5 class="nav-username">tomasndlate</h5>
-            <div class="nav-user-btn"></div>
+        <div *ngIf="isUserSignedIn && !isMobileMenuOpen" class="right-links-signed-in">
+            <h5 class="nav-username">{{user.username}}</h5>
+            <button (click)="openProfileMenu()" class="nav-user-btn"></button>
         </div>
         <div *ngIf="isMobileMenuOpen" class="mobile-menu-close-btn" (click)="closeMobileMenu()">
             <app-mobile-menu-close-btn></app-mobile-menu-close-btn>
         </div>
-    </div>
-    <div *ngIf="isMobileMenuOpen" class="nav-mobile-menu">
-        <app-mobile-menu (childCloseMobileMenu)="closeMobileMenu()" [isUserAuthenticated]="isSignedIn"></app-mobile-menu>
     </div>
 </nav>

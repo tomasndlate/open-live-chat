@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Message } from 'src/app/models/message';
+import { Component } from '@angular/core';
+import { Message } from 'src/app/models/Message';
 import { MessagesService } from 'src/app/services/messages/messages.service';
 import { SocketService } from 'src/app/services/socket/socket.service';
 

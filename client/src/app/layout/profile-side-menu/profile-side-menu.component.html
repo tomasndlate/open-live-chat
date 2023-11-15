@@ -1,0 +1,28 @@
+<div *ngIf="isUserSignedIn && isProfileMenuOpen" class="profile-side-menu-section">
+    <div (click)="closeProfileMenu()" class="profile-side-menu-background-close"></div>
+    <div class="profile-side-menu">
+        <div class="up-links">
+            <div class="side-menu-section user-details-section">
+                <div class="user-details">
+                    <div class="user-photo"></div>
+                    <span class="user-username">{{user.username}}</span>
+                </div>
+                <i (click)="copyToClipboard()" class="bi" [ngClass]="copyIcon"></i>
+            </div>
+            <div class="side-menu-section navigation-links">
+                <a routerLink="/signin">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+        </div>
+        <div class="down-links">
+            <div class="side-menu-section sign-out-link">
+                <a (click)="signOut()">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Leave</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
