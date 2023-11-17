@@ -1,7 +1,55 @@
-<p>Register</p><br>
-<p>Username</p>
-<input [(ngModel)]="username" placeholder="Type username" style="color: black;"/>
-<p>Password</p>
-<input [(ngModel)]="password" placeholder="Password" style="color: black;"/>
-<br>
-<button (click)="signUp()">Register</button>
+<div class="sign-up-page">
+    <div class="sign-up-component">
+        <h1 class="title">Become a member. Join the community!</h1>
+        <p class="sub-title">Already have an account? <span><a routerLink="/signup">Sign in</a></span></p>
+        <div class="sign-inputs-section">
+            <app-text-input 
+                (inputValueChange)="getUsernameValue($event)" 
+                (inputDisabledChange)="changeUsername()"
+                [inputType]="'text'" 
+                [status]="usernameStatus" 
+                [label]="'Username'"
+                [inputDisabled]="isUsernameSubmitted"
+            ></app-text-input>
+            <span *ngIf="isUsernameSubmitted">
+                <app-text-input 
+                    (inputValueChange)="getPasswordValue($event)" 
+                    [inputType]="'password'"
+                    [status]="passwordStatus" 
+                    [label]="'Password'"></app-text-input>
+            </span>
+            <div *ngIf="isUsernameSubmitted" class="password-criterias">
+                <li>
+                    <i *ngIf="isPatternLengthValid" class="bi bi-check-lg icon-done"></i>
+                    <i *ngIf="!isPatternLengthValid" class="bi bi-dot icon-to-do"></i>
+                    At least 6 digits
+                </li>
+                <li>
+                    <i *ngIf="isPatternUpperValid" class="bi bi-check-lg icon-done"></i>
+                    <i *ngIf="!isPatternUpperValid" class="bi bi-dot icon-to-do"></i>
+                    At least 1 uppercase
+                </li>
+                <li>
+                    <i *ngIf="isPatternNumberValid" class="bi bi-check-lg icon-done"></i>
+                    <i *ngIf="!isPatternNumberValid" class="bi bi-dot icon-to-do"></i>
+                    A least 1 number
+                </li>
+                <li>
+                    <i *ngIf="isPatternSymbolValid" class="bi bi-check-lg icon-done"></i>
+                    <i *ngIf="!isPatternSymbolValid" class="bi bi-dot icon-to-do"></i>
+                    A least 1 symbol - eg. @, €, $, %, &, *
+                </li>
+            </div>
+            <span *ngIf="isUsernameSubmitted">
+                <app-text-input 
+                    (inputValueChange)="getConfirmPasswordValue($event)" 
+                    [inputType]="'password'"
+                    [inputValue]="confirmPassword"
+                    [status]="confirmPasswordStatus"
+                    [label]="'Confirm password'"></app-text-input>
+            </span>
+        </div>
+        <button *ngIf="!isUsernameSubmitted" [disabled]="!isUsernameValid" (click)="subtmitUsername()">Next</button>
+        <button *ngIf="isUsernameSubmitted" [disabled]="!isPassowrdValid || !isConfirmPasswordValid" (click)="signUp()">Sign in</button>
+    </div>
+</div>
