@@ -57,7 +57,6 @@ export class SignInComponent {
 
   subtmitUsername(){
     this.isUsernameSubmitted = true;
-    // this.usernameStatus = "blocked";
   }
 
   changeUsername(){
