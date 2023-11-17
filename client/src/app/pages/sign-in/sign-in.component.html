@@ -1,7 +1,26 @@
-<p>Sign in</p><br>
-<p>Username</p>
-<input [(ngModel)]="username" placeholder="Type username" style="color: black;" />
-<p>Password</p>
-<input [(ngModel)]="password" placeholder="Password" style="color: black;" />
-<br>
-<button (click)="signUp()">Sign in</button>
+<div class="sign-in-page">
+    <div class="sign-in-component">
+        <h1 class="title">Login into your account.</h1>
+        <p class="sub-title">Don't have an account? <span><a routerLink="/signup">Register</a></span></p>
+        <div class="sign-inputs-section">
+            <app-text-input 
+                (inputValueChange)="getUsernameValue($event)" 
+                (inputDisabledChange)="changeUsername()"
+                [inputType]="'text'" 
+                [status]="usernameStatus" 
+                [label]="'Username'"
+                [inputDisabled]="isUsernameSubmitted"
+            ></app-text-input>
+            <span *ngIf="isUsernameSubmitted">
+                <app-text-input 
+                    (inputValueChange)="getPasswordValue($event)"
+                    [inputType]="'password'" 
+                    [status]="'default'" 
+                    [label]="'Password'"
+                ></app-text-input>
+            </span>
+        </div>
+        <button *ngIf="!isUsernameSubmitted" [disabled]="!isUsernameValid" (click)="subtmitUsername()">Next</button>
+        <button *ngIf="isUsernameSubmitted" [disabled]="!isPassowrdValid" (click)="signIn()">Sign in</button>
+    </div>
+</div>
