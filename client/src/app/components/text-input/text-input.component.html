@@ -1,0 +1,17 @@
+<label [for]="inputId">
+    {{label}}
+    <div class="input-field">
+        <input 
+            [(ngModel)]="inputValue" 
+            (ngModelChange)="handleInputChange()" 
+            [type]="inputType" 
+            [id]="inputId" 
+            [ngClass]="status" 
+            [placeholder]="label"
+            [disabled]="inputDisabled"
+            >
+        <i *ngIf=" status === 'valid' && !inputDisabled" class="bi bi-check-lg icon-valid"></i>
+        <i *ngIf=" status === 'invalid' && !inputDisabled" class="bi bi-x-lg icon-invalid"></i>
+        <span *ngIf="inputDisabled" class="disabled-change-input" (click)="handleInputDisabledChange()">Change</span>
+    </div>
+</label>

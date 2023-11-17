@@ -28,6 +28,11 @@ export class AuthService {
     }
     this.token = token;
   }
+
+  private removeToken(){
+    localStorage.removeItem('authToken');
+    this.token = null;
+  }
   
   private isTokenValid(token: string): Observable<boolean> {
 
@@ -41,8 +46,15 @@ export class AuthService {
 
     return this.http.get<boolean>(`${this.apiUrl}/validate-token`, httpOptions)
       .pipe(
+        map(isTokenValid => {
+          if(!isTokenValid){
+            this.removeToken()
+          }
+          return isTokenValid
+        }),
         catchError(error => {
           console.error('Error validating token:', error);
+          this.removeToken()
           return of(false); // Assuming an error means the token is not valid
         })
       );
@@ -120,8 +132,9 @@ export class AuthService {
   }
 
   signOut() {
-    this.setToken(null);
+    // this.setToken(null);
     // removeToken();
+    this.removeToken()
     this.setUserLoggedStatus(false);
     // this.router.navigate(['/signin'])
   }

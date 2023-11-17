@@ -1,0 +1,96 @@
+label {
+    font-size: 14px;
+    font-weight: 500;
+}
+.input-field{
+    margin-top: 5px;
+    position: relative;
+    height: 35px;
+    width: 100%;
+    // background-color: pink;
+}
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    right: 10px;
+    z-index: 2;
+}
+
+.icon-valid{
+    color: rgba(28, 144, 59, 0.7);
+    -webkit-text-stroke: .8px;
+}
+
+.icon-invalid{
+    color: rgba(171, 39, 39, 0.7);
+    -webkit-text-stroke: 1.4px;
+}
+
+.disabled-change-input{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    right: 10px;
+    z-index: 2;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(40, 195, 81, 0.7);
+    cursor: pointer;
+}
+
+input {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgba(60, 60, 60, 0.5);
+    border-radius: 5px;
+    background-color: rgb(17, 17, 17);
+    padding: 10px;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.default{
+    border: 1px solid rgba(60, 60, 60, 0.5);
+}
+.valid{
+    border: 1px solid rgba(28, 144, 59, 0.5);
+    padding-right: 50px;
+}
+.invalid{
+    border: 1px solid rgba(171, 39, 39, 0.5);
+    padding-right: 50px;
+}
+
+.default:hover, .default:focus {
+    outline: 2px solid rgba(60, 60, 60, 0.7);
+}
+
+.valid:hover, .valid:focus {
+    outline: 2px solid rgba(28, 144, 59, 0.7);
+}
+
+.invalid:hover, .invalid:focus {
+    outline: 2px solid rgba(171, 39, 39, 0.7);
+}
+
+input:disabled{
+    border: 1px solid rgba(60, 60, 60, 0.5);
+    background-color: rgba(87, 87, 87, 0.6);
+    cursor: not-allowed;
+    color: rgb(255, 255, 255);
+}
+input:disabled:hover{
+    outline: none;
+}
+
+@media screen and (max-width: 800px) {
+    .default:hover, .valid:hover, .invalid:hover {
+        outline: none;
+    }
+}
