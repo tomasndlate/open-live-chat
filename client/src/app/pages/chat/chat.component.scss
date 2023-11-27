@@ -1,9 +1,83 @@
-.chat-component{
+.chat-page{
     position: relative;
-    display: flex;
+    width: 100%;
+    height: fit-content;
+    // min-height: 500px;
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
     flex-direction: column;
     gap: 15px;
+    justify-content: start;
+    align-items: start;
+    // background-color: rgba(108, 74, 79, 0.569);
 }
+
+.element-section{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    
+}
+
+.profile-element{
+    background-color: #27ae60;
+}
+
+.chat-element{
+    // height: 100%;
+    height: calc(100dvh - 70px - 40px - 30px);
+    min-height: 500px;
+    // background-color: #27ae60;
+}
+
+.right-elements{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.members-element{
+    background-color: #27ae60;
+}
+
+.senders-position-element{
+    background-color: #27ae60;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------
+// -------------------------------------------
+// -------------------------------------------
+// -------------------------------------------
 
 .header-content{
     position: relative;

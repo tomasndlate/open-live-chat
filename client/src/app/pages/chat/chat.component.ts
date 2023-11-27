@@ -22,8 +22,6 @@ export class ChatComponent {
   ngOnInit(){
     this.messagesService.getMessages().subscribe( (response) => {
       this.messages = response;
-      console.log(this.messages)
-      console.log(this.messages[0])
     })
     this.getNewMessages()
     // this.scrollToBottom();

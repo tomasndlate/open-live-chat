@@ -11,7 +11,7 @@ import { getToken } from '../../utils/tokenUtils';
 })
 export class MessagesService {
 
-  private apiUrl = 'http://192.168.1.8:3000/messages/get-all-messages';
+  private apiUrl = 'http://192.168.1.5:3000/messages/get-all-messages';
 
   messages: Message[] = [];
 

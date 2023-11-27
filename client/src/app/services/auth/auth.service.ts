@@ -9,7 +9,7 @@ export class AuthService {
 
   private token: string | null = null;
 
-  private apiUrl = 'http://192.168.1.8:3000/authentication';
+  private apiUrl = 'http://192.168.1.5:3000/authentication';
 
   private isUserLoggedInSubject = new BehaviorSubject<boolean>(false);
   isUserLoggedIn: Observable<boolean> = this.isUserLoggedInSubject.asObservable();

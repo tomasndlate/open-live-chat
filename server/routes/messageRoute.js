@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/get-all-messages', authenticate, async (req, res) => {
   try {
     // Retrieve all messages
-    const allMessages = await Message.find();
+    const allMessages = await Message.find().sort({ timestamp: -1 });
 
     res.status(200).json(allMessages);
   } catch (error) {

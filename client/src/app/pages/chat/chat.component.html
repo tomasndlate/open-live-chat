@@ -1,21 +1,21 @@
-<div class="chat-component">
+<div class="chat-page">
   <!-- Open Live Chat Title -->
-  <section class="header-content">
+  <!-- <section class="header-content">
     <p class="header-subtitle">Welcome to the</p>
     <h1 class="header-title">Open Live Chat</h1>
     <button class="header-button">Github Repository</button>
-  </section>
+  </section> -->
 
   <!-- chat box -->
-  <section *ngIf="false" class="chat-content">
+  <!-- <section *ngIf="false" class="chat-content"> -->
     <!-- messages box -->
-    <div class="messages-box" #chatContainer>
+    <!-- <div class="messages-box" #chatContainer>
         <li *ngFor="let msg of messages">
           {{msg.content}}
         </li>
-    </div>
+    </div> -->
     <!-- input box -->
-    <div class="input-box">
+    <!-- <div class="input-box">
       <div class="input-grid">
         <div class="photo-input"></div>
         <div class="username-input">
@@ -29,6 +29,25 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+  <div class="element-section profile-element">
+    <app-profile-element></app-profile-element>
+  </div>
+  
+  <div class="element-section chat-element">
+    <app-chat-element></app-chat-element>
+  </div>
+  
+  <div class="element-section right-elements">
+    <div class="members-element">
+      <app-members-element></app-members-element>
+    </div>
+    <div class="senders-position-element">
+      <app-senders-position-element></app-senders-position-element>
+    </div>
+  </div>
+  
+  
+  
 </div>
 

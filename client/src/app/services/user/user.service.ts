@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://192.168.1.8:3000/user';
+  private apiUrl = 'http://192.168.1.5:3000/user';
 
   private emptyUser = {
     username: ""

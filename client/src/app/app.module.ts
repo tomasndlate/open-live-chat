@@ -13,7 +13,7 @@ import { MobileMenuModule } from './layout/mobile-menu/mobile-menu.module';
 import { ProfileSideMenuModule } from './layout/profile-side-menu/profile-side-menu.module';
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 
-const config: SocketIoConfig = { url: 'http://192.168.1.8:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.1.5:3000', options: {} };
 
 @NgModule({
     declarations: [
